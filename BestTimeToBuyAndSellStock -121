@@ -1,0 +1,20 @@
+class Solution {
+    public int maxProfit(int[] prices) {
+        int minPrice=prices[0];
+        int maxProfit=Integer.MIN_VALUE;
+
+        // while iterating , a price will either be less than minPrice or be greater than minPrice
+        // when we get a lesser value, update minPrice with that
+        //if we get a greater price, we check if that price can maximize the profit greater than   
+        //previous one !
+
+        for(int x:prices){
+            if(minPrice>x){
+                minPrice=x;
+            }else{
+                maxProfit=Math.max(maxProfit, x-minPrice);
+            }
+        }
+        return maxProfit;
+    }
+}
