@@ -1,0 +1,53 @@
+//using extra space
+
+class Solution {
+    public int pivotIndex(int[] nums) {
+       int[] temp=new int[nums.length];
+       int n=nums.length;
+       temp[n-1]=0;
+       for(int i=n-2;i>=0;i--){
+           temp[i]+=temp[i+1]+nums[i+1];
+       }
+  /*     for(int i=0;i<n;i++){
+           System.out.print(temp[i]+" ");
+       }
+       System.out.println("");
+       */int sum=0;
+       int x=0;
+       for(int i=0;i<n;i++){
+           x=nums[i];
+           nums[i]=sum;
+           sum+=x;
+         //    System.out.print(nums[i]+" ");
+           if(nums[i]==temp[i])return i;
+       }
+       if(nums[0]==temp[0]||temp[n-1]==nums[n-1])return 0;
+       return -1;
+    }
+}
+
+// without using extra space
+
+class Solution {
+    public int pivotIndex(int[] nums) {
+        int sum1=0;
+        int sum2=0;
+        for(int i=1;i<nums.length;i++){
+            sum1+=nums[i];
+        }
+        int j=0;
+        while(j<nums.length-1){
+           if(sum1==sum2){
+               return j;
+           }
+            if(j<=nums.length-2){
+                sum1-=nums[j+1];
+                sum2+=nums[j];
+            }
+            j++;
+        }
+        if(sum2==0)
+            return nums.length-1;
+        return -1;
+    }
+}
