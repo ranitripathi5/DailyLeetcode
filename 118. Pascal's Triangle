@@ -1,0 +1,18 @@
+// every element is sum of (prev row's same column) + (prev row's prev col) and when col==0||col=row-1 element=1;
+
+class Solution {
+    public List<List<Integer>> generate(int numRows) {
+        List<List<Integer>> li=new ArrayList<>();
+        for(int i=0;i<numRows;i++){
+            List<Integer> l=new ArrayList<>();
+            for(int j=0;j<i+1;j++){
+                if(j==0||j==i)l.add(1);
+                else{
+                    l.add(li.get(i-1).get(j-1)+li.get(i-1).get(j));
+                }
+            }
+            li.add(l);
+        }
+        return li;
+    }
+}
