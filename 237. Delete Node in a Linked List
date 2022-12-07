@@ -1,0 +1,12 @@
+// tail cant be deleted with this method.
+
+class Solution {
+    public void deleteNode(ListNode node) {
+        int x=node.val;
+        node.val=node.next.val;
+        node.next.val=x;
+        ListNode temp=node.next.next;
+        node.next=null;
+        node.next=temp;
+    }
+}
